@@ -18,7 +18,7 @@ class DAOcarrera:
         #print(mycursor.rowcount, "record inserted.")      
 
     def ver(self):
-        self._mycursor.execute("SELECT * FROM carrera")
+        self._mycursor.execute("SELECT * FROM carreras")
         self._myresult = self._mycursor.fetchall()
         for row in self._myresult:
             print(row)
