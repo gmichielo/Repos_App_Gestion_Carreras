@@ -3,7 +3,7 @@ class Carrera:
         self._nombre = nombre
         self._idCarrera = idCarrera
     def get_nombre(self):
-        return self._calle_numero
+        return self._nombre
     def get_idCarrera(self):
         return self._idCarrera
     def set_nombre(self,nombre: str):
