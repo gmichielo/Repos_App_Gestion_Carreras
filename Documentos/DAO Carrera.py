@@ -1,8 +1,7 @@
 import mysql.connector
 class DAOcarrera:
-    def __init__(self, nombre: str, N_nombre: str):
+    def __init__(self, nombre: str):
         self._nombre = nombre
-        self._listacarreras = []
         self._mydb = mysql.connector.connect(
                       host="localhost",
                       user="root",
@@ -17,10 +16,13 @@ class DAOcarrera:
         self._mycursor.execute(sql, val)
         self._mydb.commit()
         #print(mycursor.rowcount, "record inserted.")      
-"""
-    def ver(self):
-        self._listacarreras
 
+    def ver(self):
+        self._mycursor.execute("SELECT * FROM carrera")
+        self._myresult = self._mycursor.fetchall()
+        for row in self._myresult:
+            print(row)
+""""
 
 
     def actualizar(self,nombre: str, N_nombre: str):
