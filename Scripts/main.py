@@ -14,14 +14,31 @@ def mostrar_menu_acciones():
 print("\033[36mBienvenid@ al gestor de carreras 200\n¿Que deseas hacer?\n")
 
 while accion_usuario != 0:
+
     print(mostrar_menu_acciones())
+
     try:
         accion_usuario = int(input(" Elige una opción: ").strip())
     except ValueError:
         print("\033[31mOpción inválida, escribe un número.\033[0m")
         continue
+    
     if accion_usuario > 4 or accion_usuario < 0:
         print("\033[31mOpción inválida, seleccione un numero del menu.\033[0m")
         continue
+
+    if accion_usuario == 1:
+        print("Accion de añadir")
+
+    elif accion_usuario == 2:
+        print("Accion de Actualizar")
+
+    elif accion_usuario == 3:
+        print("Accion de Ver")
+
+    elif accion_usuario == 4:
+        print("Accion de Borrar")
+    
+
 
 print("\033[36mHazta luego\n\033[0m")
