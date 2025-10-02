@@ -1,19 +1,15 @@
 from DAO_Carreras import DAO_Carreras
-#from Carreras import Carreras
+from Carreras import Carreras
 
 accion_usuario = 1
 accion_id = 1
 
-DAO_carreras = DAO_Carreras("3")
-carreras = ["a"]
+DAO_carreras = DAO_Carreras("DAO_BD")
+carreras = DAO_carreras.ver()
 
 #def creacion_carrera():
 #    carrera = Carrera()
 #    return carrera
-
-def rellenar_opciones_carreras():
-    carreras_actu = []
-    return carreras_actu
 
 def mostrar_opciones_carreras(carrera_lista):
     formateado = ""
@@ -29,8 +25,6 @@ def mostrar_menu_acciones():
         "0.- Salir.\033[0m\n"
     )
     return menu
-
-carreras = rellenar_opciones_carreras()
 
 print("\033[36mBienvenid@ al gestor de carreras 200\n¿Que deseas hacer?\n")
 
@@ -49,7 +43,13 @@ while accion_usuario != 0:
         continue
 
     if accion_usuario == 1:
-        print("Accion de Añadir")
+        accion_nombre_carrera = input("Introduce el nombre de la carrera: ")
+
+        while (accion_nombre_carrera.isdigit() == True) or not accion_nombre_carrera.strip().isalnum():
+            accion_nombre_carrera = input("\033[31mNombre no valido, Elige uno nuevo: \033[0m")
+        
+
+        carreras = DAO_carreras.ver()
 
     elif accion_usuario == 2:
         print("\n" + mostrar_opciones_carreras(carreras))
@@ -58,10 +58,9 @@ while accion_usuario != 0:
         while (accion_id.isdigit() == False) or (int(accion_id) > len(carreras)) or (int(accion_id) <= 0) :
             accion_bus = input("\033[31mEsa id no existe, Elige una nueva: \033[0m")
 
+        carreras = DAO_carreras.ver()
 
-        carreras = rellenar_opciones_carreras()
-
-    elif accion_usuario == 3:
+    if accion_usuario == 3:
         print(mostrar_opciones_carreras(carreras))
 
     elif accion_usuario == 4:
@@ -70,8 +69,5 @@ while accion_usuario != 0:
 
         while (accion_id.isdigit() == False) or (int(accion_id) > len(carreras)) or (int(accion_id) <= 0) :
             accion_bus = input("\033[31mEsa id no existe, Elige una nueva: \033[0m")
-
-
-        carreras = rellenar_opciones_carreras()
 
 print("\033[36mHazta luego\n\033[0m")
