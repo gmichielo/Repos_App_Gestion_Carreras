@@ -27,36 +27,10 @@ class DAOcarrera:
         sql = "UPDATE carerras.carreras SET nombre = 2 WHERE idcarrera = 1"
         self._mycursor.execute(sql)
         self._mydb.commit()
-
-
-""""
-    def set_provincia(self,id: int):
-        self._id = id
-    def __str__(self):
-        return f"Nombre: {self._nombre} idCarrera: {self._idCarrera}"
-    
-
-    mycursor = mydb.cursor()
-
-
-
-#Mostrar tabla
-mycursor.execute("SELECT * FROM alumnos")
-myresult = mycursor.fetchall()
-for row in myresult:
-    print(row)
-
-#Cambio de la columna despues del set con lo que coincida con la columna del WHERE
-mycursor = mydb.cursor()
-sql = "UPDATE universidad.alumnos SET nombre = 2 WHERE idAlumno = 1"
-mycursor.execute(sql)
-mydb.commit()
-print(mycursor.rowcount, "record(s) affected")
-
-#BORRAR !!!
-mycursor = mydb.cursor()
-consulta_sql = f"DELETE FROM alumnos WHERE nombre = 'Juanito'"
-mycursor.execute(consulta_sql)
-mydb.commit()
-print(f"Filas afectadas: {mycursor.rowcount}")
-"""
+        
+    def borrar(self,carrera):
+        self._mycursor = self._mydb.cursor()
+        sql = "DELETE FROM carerras.carreras WHERE idcarrera = %s"
+        consulta_valor = carrera.get_idCarrera()
+        self._mycursor.execute(sql,consulta_valor)
+        self._mydb.commit()  
