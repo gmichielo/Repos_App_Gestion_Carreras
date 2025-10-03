@@ -12,7 +12,7 @@ class DAO_Carreras():
                   )
         self._mycursor = self._mydb.cursor()
 
-    def añadir(self,carrera):
+    def añadir(self, carrera):
         sql = "INSERT INTO carreras.carreras (nombre) VALUES (%s)"
         val = [carrera.get_nombre()]
         self._mycursor.execute(sql, val)
@@ -22,3 +22,9 @@ class DAO_Carreras():
         self._mycursor.execute("SELECT * FROM carreras")
         self._myresult = self._mycursor.fetchall()
         return self._myresult
+    
+    def actualizar(self, carrera):
+        sql = "UPDATE carreras.carreras SET nombre = %s WHERE idcarreras = %s"
+        valores = (carrera.get_nombre(), carrera.get_idCarrera())
+        self._mycursor.execute(sql, valores)
+        self._mydb.commit()
