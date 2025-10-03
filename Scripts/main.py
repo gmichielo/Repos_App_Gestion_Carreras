@@ -7,6 +7,14 @@ accion_id = 1
 DAO_carreras = DAO_Carreras("DAO_BD")
 carreras = DAO_carreras.ver()
 
+def verificacion_idcarrera_existente(id_buscar):
+    indice_columna = 0
+    for fila in carreras:
+        if fila[indice_columna] == id_buscar: return True
+    
+    return False
+        
+
 def creacion_carrera(nombre, id = 0):
     carrera = Carreras(nombre, id)
     return carrera
@@ -56,14 +64,18 @@ while accion_usuario != 0:
 
     elif accion_usuario == 2:
         print("\n" + mostrar_opciones_carreras(carreras))
-        accion_id = 129
+        accion_id = input("Introduce el id de la carrera a cambiar: ")
 
-        #while (accion_id.isdigit() == False) or (int(accion_id) > len(carreras)) or (int(accion_id) <= 0) :
-           # accion_bus = input("\033[31mEsa id no existe, Elige una nueva: \033[0m")
+        while (accion_id.isdigit() == False) or (int(accion_id) <= 0) or not verificacion_idcarrera_existente(int(accion_id)) :
+            accion_id = input("\033[31mEsa id no existe, Elige una nueva: \033[0m")
 
-        nueva_carrera = creacion_carrera("Matematica testeo",accion_id)
+        accion_nombre_carrera = input("Introduce el nuevo nombre de la carrera: ")
+
+        while (accion_nombre_carrera.isdigit() == True) or not accion_nombre_carrera.strip().isalnum():
+            accion_nombre_carrera = input("\033[31mNombre no valido, Elige uno nuevo: \033[0m")
+
+        nueva_carrera = creacion_carrera(accion_nombre_carrera,accion_id)
         DAO_carreras.actualizar(nueva_carrera)
-        
         carreras = DAO_carreras.ver()
 
     if accion_usuario == 3:
@@ -71,9 +83,14 @@ while accion_usuario != 0:
 
     elif accion_usuario == 4:
         print("\n" + mostrar_opciones_carreras(carreras))
-        accion_id = input("Escoge la id de la carrera a borrar: ")
+        accion_id = input("Introduce el id de la carrera a borrar: ")
 
-        while (accion_id.isdigit() == False) or (int(accion_id) > len(carreras)) or (int(accion_id) <= 0) :
-            accion_bus = input("\033[31mEsa id no existe, Elige una nueva: \033[0m")
+        while (accion_id.isdigit() == False) or (int(accion_id) <= 0) or not verificacion_idcarrera_existente(int(accion_id)) :
+            accion_id = input("\033[31mEsa id no existe, Elige una nueva: \033[0m")
+
+        nueva_carrera = creacion_carrera("Carrera Borrar",accion_id)
+        DAO_carreras.actualizar(nueva_carrera)
+        carreras = DAO_carreras.ver()
+
 
 print("\033[36mHazta luego\n\033[0m")
