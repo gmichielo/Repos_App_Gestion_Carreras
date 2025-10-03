@@ -1,36 +1,48 @@
 import mysql.connector
 
 class DAO_Carreras():
-    def __init__(self, nombre: str):
-        self._nombre = nombre
-        self._listacarreras = []
-        self._mydb = mysql.connector.connect(
-                      host="localhost",
-                      user="root",
-                      password="123456",
-                      database="carreras"
+    def __init__(self, user_input: str, password_input: str):
+        self.__listacarreras = []
+
+        self.__host = "localhost"
+        self.__user = user_input
+        self.__password = password_input
+        self.__database = "carreras_edgar&gabriel"
+
+        self.__mydb = mysql.connector.connect(
+                      host = self.__host,
+                      user = self.__user,
+                      password = self.__password,
+                      database = self.__database
                   )
-        self._mycursor = self._mydb.cursor()
+        
+        self.__mycursor = self.__mydb.cursor()
+
+    def existecia(self):
+        return "Conexion Hecha"
 
     def añadir(self, carrera):
-        sql = "INSERT INTO carreras.carreras (nombre) VALUES (%s)"
+        sql = "INSERT INTO `carreras_edgar&gabriel`.carreras (nombre) VALUES (%s)"
         val = [carrera.get_nombre()]
-        self._mycursor.execute(sql, val)
-        self._mydb.commit()
+        self.__mycursor.execute(sql, val)
+        self.__mydb.commit()
 
     def ver(self):
-        self._mycursor.execute("SELECT * FROM carreras")
-        self._myresult = self._mycursor.fetchall()
+        self.__mycursor.execute("SELECT * FROM carreras")
+        self._myresult = self.__mycursor.fetchall()
         return self._myresult
     
     def actualizar(self, carrera):
-        sql = "UPDATE carreras.carreras SET nombre = %s WHERE idcarreras = %s"
+        sql = "UPDATE `carreras_edgar&gabriel`.carreras SET nombre = %s WHERE idcarreras = %s"
         valores = (carrera.get_nombre(), carrera.get_idCarrera())
-        self._mycursor.execute(sql, valores)
-        self._mydb.commit()
+        self.__mycursor.execute(sql, valores)
+        self.__mydb.commit()
     
     def borrar(self,carrera):
-        sql = "DELETE FROM carreras.carreras WHERE idcarreras = %s"
+        sql = "DELETE FROM `carreras_edgar&gabriel`.carreras WHERE idcarreras = %s"
         consulta_valor = carrera.get_idCarrera()
-        self._mycursor.execute(sql,consulta_valor)
-        self._mydb.commit() 
+        self.__mycursor.execute(sql,consulta_valor)
+        self.__mydb.commit() 
+
+    def __str__(self):
+        pass
