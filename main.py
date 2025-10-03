@@ -59,10 +59,12 @@ usuario = pedir_texto("Introduce el usuario por favor: ")
 contrasenya = pedir_contrasena("Introduce la contraseña por favor: ")
 
 DAO_carreras = DAO_Carreras(usuario, contrasenya)
-print(DAO_carreras.existecia())
-carreras = DAO_carreras.ver()
+DAO_carreras.connect()
 
-while accion_usuario != 0 and DAO_carreras != None:
+if DAO_carreras.get_conexion() == True: carreras = DAO_carreras.ver()
+else: print("\033[31mConexion no hecha\033[0m")
+
+while accion_usuario != 0 and DAO_carreras != None and DAO_carreras.get_conexion() == True:
 
     print(mostrar_menu_acciones())
 

@@ -1,25 +1,41 @@
 import mysql.connector
+from mysql.connector import Error
 
 class DAO_Carreras():
     def __init__(self, user_input: str, password_input: str):
-        self.__listacarreras = []
 
         self.__host = "localhost"
         self.__user = user_input
         self.__password = password_input
         self.__database = "carreras_edgar&gabriel"
-
-        self.__mydb = mysql.connector.connect(
-                      host = self.__host,
-                      user = self.__user,
-                      password = self.__password,
-                      database = self.__database
-                  )
+        self.__conexionHecha = False
         
-        self.__mycursor = self.__mydb.cursor()
+    def get_conexion(self):
+        return self.__conexionHecha
+    
+    def connect(self):
+        try:
+            self.__mydb = mysql.connector.connect(
+                host=self.__host,
+                user=self.__user,
+                password=self.__password,
+                database=self.__database
+            )
+            self.connected = self.__mydb.is_connected()
+            self.__mycursor = self.__mydb.cursor()
+            self.__conexionHecha = True
+        except Error as err:
+            self.__mydb = None
+            self.__mydb = False
+            self.last_error = err
 
-    def existecia(self):
-        return "Conexion Hecha"
+    def reconnect(self, user=None, password=None):
+        if user:
+            self.__user = user
+        if password:
+            self.__password = password
+        self.connect()
+        return self.connected
 
     def añadir(self, carrera):
         sql = "INSERT INTO `carreras_edgar&gabriel`.carreras (nombre) VALUES (%s)"
