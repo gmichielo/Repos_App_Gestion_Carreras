@@ -28,7 +28,7 @@ class DAOcarrera:
         self._mycursor.execute(sql)
         self._mydb.commit()
         
-    def borrar(self,carrera):
+    def borrar(self, carrera):
         self._mycursor = self._mydb.cursor()
         sql = "DELETE FROM carerras.carreras WHERE idcarrera = %s"
         consulta_valor = carrera.get_idCarrera()

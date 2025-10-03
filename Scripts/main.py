@@ -88,8 +88,8 @@ while accion_usuario != 0:
         while (accion_id.isdigit() == False) or (int(accion_id) <= 0) or not verificacion_idcarrera_existente(int(accion_id)) :
             accion_id = input("\033[31mEsa id no existe, Elige una nueva: \033[0m")
 
-        nueva_carrera = creacion_carrera("Carrera Borrar",accion_id)
-        DAO_carreras.actualizar(nueva_carrera)
+        nueva_carrera = creacion_carrera("Carrera Borrar", [int(accion_id)])
+        DAO_carreras.borrar(nueva_carrera)
         carreras = DAO_carreras.ver()
 
 
