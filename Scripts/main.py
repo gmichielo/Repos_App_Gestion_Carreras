@@ -50,8 +50,9 @@ while accion_usuario != 0:
         
         nueva_carrera = creacion_carrera(accion_nombre_carrera)
         DAO_carreras.añadir(nueva_carrera)
-
         carreras = DAO_carreras.ver()
+
+        print(f"\nCarrera: {carreras[-1]} creada con exito\n")
 
     elif accion_usuario == 2:
         print("\n" + mostrar_opciones_carreras(carreras))
