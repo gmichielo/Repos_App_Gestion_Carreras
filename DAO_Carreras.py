@@ -34,7 +34,7 @@ class DAO_Carreras():
             self.__user = user
         if password:
             self.__password = password
-        self.connect()
+        self.conectar()
         return self.connected
 
     def añadir(self, carrera):
