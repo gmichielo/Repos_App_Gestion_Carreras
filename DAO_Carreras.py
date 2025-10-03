@@ -7,7 +7,7 @@ class DAO_Carreras():
         self.__host = "localhost"
         self.__user = user_input
         self.__password = password_input
-        self.__database = "carreras_edgar&gabriel"
+        self.__database = "carreras_edgar_y_gabriel"
         self.__conexionHecha = False
         
     def get_conexion(self):
@@ -38,7 +38,7 @@ class DAO_Carreras():
         return self.connected
 
     def añadir(self, carrera):
-        sql = "INSERT INTO `carreras_edgar&gabriel`.carreras (nombre) VALUES (%s)"
+        sql = "INSERT INTO carreras_edgar_y_gabriel.carreras (nombre) VALUES (%s)"
         val = [carrera.get_nombre()]
         self.__mycursor.execute(sql, val)
         self.__mydb.commit()
@@ -49,13 +49,13 @@ class DAO_Carreras():
         return self._myresult
     
     def actualizar(self, carrera):
-        sql = "UPDATE `carreras_edgar&gabriel`.carreras SET nombre = %s WHERE idcarreras = %s"
+        sql = "UPDATE carreras_edgar_y_gabriel.carreras SET nombre = %s WHERE idcarreras = %s"
         valores = (carrera.get_nombre(), carrera.get_idCarrera())
         self.__mycursor.execute(sql, valores)
         self.__mydb.commit()
     
     def borrar(self,carrera):
-        sql = "DELETE FROM `carreras_edgar&gabriel`.carreras WHERE idcarreras = %s"
+        sql = "DELETE FROM carreras_edgar_y_gabriel.carreras WHERE idcarreras = %s"
         consulta_valor = carrera.get_idCarrera()
         self.__mycursor.execute(sql,consulta_valor)
         self.__mydb.commit() 
