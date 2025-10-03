@@ -12,9 +12,9 @@ class DAO_Carreras():
                   )
         self._mycursor = self._mydb.cursor()
 
-    def añadir(self,nombre: str):
+    def añadir(self,carrera):
         sql = "INSERT INTO carreras.carreras (nombre) VALUES (%s)"
-        val = [nombre]
+        val = [carrera.get_nombre()]
         self._mycursor.execute(sql, val)
         self._mydb.commit()
 

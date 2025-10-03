@@ -7,9 +7,9 @@ accion_id = 1
 DAO_carreras = DAO_Carreras("DAO_BD")
 carreras = DAO_carreras.ver()
 
-#def creacion_carrera():
-#    carrera = Carrera()
-#    return carrera
+def creacion_carrera(nombre, id = ""):
+    carrera = Carreras(nombre, id)
+    return carrera
 
 def mostrar_opciones_carreras(carrera_lista):
     formateado = ""
@@ -48,6 +48,8 @@ while accion_usuario != 0:
         while (accion_nombre_carrera.isdigit() == True) or not accion_nombre_carrera.strip().isalnum():
             accion_nombre_carrera = input("\033[31mNombre no valido, Elige uno nuevo: \033[0m")
         
+        nueva_carrera = creacion_carrera(accion_nombre_carrera)
+        DAO_carreras.añadir(nueva_carrera)
 
         carreras = DAO_carreras.ver()
 

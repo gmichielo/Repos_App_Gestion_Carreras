@@ -1,5 +1,5 @@
 class Carreras:
-    def __init__(self, nombre: str, idCarrera: int):
+    def __init__(self, nombre: str, idCarrera = ""):
         self._nombre = nombre
         self._idCarrera = idCarrera
 
