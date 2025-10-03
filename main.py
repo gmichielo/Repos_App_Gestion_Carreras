@@ -59,7 +59,7 @@ usuario = pedir_texto("Introduce el usuario por favor: ")
 contrasenya = pedir_contrasena("Introduce la contraseña por favor: ")
 
 DAO_carreras = DAO_Carreras(usuario, contrasenya)
-DAO_carreras.connect()
+DAO_carreras.conectar()
 
 if DAO_carreras.get_conexion() == True: carreras = DAO_carreras.ver()
 else: print("\033[31mConexion no hecha\033[0m")

@@ -13,7 +13,7 @@ class DAO_Carreras():
     def get_conexion(self):
         return self.__conexionHecha
     
-    def connect(self):
+    def conectar(self):
         try:
             self.__mydb = mysql.connector.connect(
                 host=self.__host,
@@ -29,7 +29,7 @@ class DAO_Carreras():
             self.__mydb = False
             self.last_error = err
 
-    def reconnect(self, user=None, password=None):
+    def reconectar(self, user=None, password=None):
         if user:
             self.__user = user
         if password:
