@@ -34,7 +34,7 @@ def mostrar_menu_acciones():
     )
     return menu
 
-print("\033[36mBienvenid@ al gestor de carreras 200\n¿Que deseas hacer?\n")
+print("\033[36mBienvenid@ al gestor de carreras 2000\n¿Que deseas hacer?\n")
 
 while accion_usuario != 0:
 
@@ -60,7 +60,7 @@ while accion_usuario != 0:
         DAO_carreras.añadir(nueva_carrera)
         carreras = DAO_carreras.ver()
 
-        print(f"\nCarrera: {carreras[-1]} creada con exito\n")
+        print(f"\n\033[32mCarrera: {carreras[-1]} creada con exito\033[0m\n")
 
     elif accion_usuario == 2:
         print("\n" + mostrar_opciones_carreras(carreras))
@@ -78,7 +78,7 @@ while accion_usuario != 0:
         DAO_carreras.actualizar(nueva_carrera)
         carreras = DAO_carreras.ver()
 
-        print(f"\nCarrera: {accion_id} actualizada con exito con exito\n")
+        print(f"\n\033[32mCarrera: {accion_id} actualizada con exito con exito\033[0m\n")
 
     if accion_usuario == 3:
         print(mostrar_opciones_carreras(carreras))
@@ -94,7 +94,7 @@ while accion_usuario != 0:
         DAO_carreras.borrar(nueva_carrera)
         carreras = DAO_carreras.ver()
 
-        print(f"\nCarrera: {accion_id} borrada con exito con exito\n")
+        print(f"\n\033[32mCarrera: {accion_id} borrada con exito con exito\033[0m\n")
 
 
 print("\033[36mHazta luego\n\033[0m")
