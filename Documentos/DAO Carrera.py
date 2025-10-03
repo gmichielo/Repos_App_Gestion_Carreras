@@ -20,16 +20,16 @@ class DAOcarrera:
     def ver(self):
         self._mycursor.execute("SELECT * FROM carreras")
         self._myresult = self._mycursor.fetchall()
-        for row in self._myresult:
-            print(row)
+        return self._myresult
+
+    def actualizar(self):
+        self._mycursor = self._mydb.cursor()
+        sql = "UPDATE carerras.carreras SET nombre = 2 WHERE idcarrera = 1"
+        self._mycursor.execute(sql)
+        self._mydb.commit()
+
+
 """"
-
-
-    def actualizar(self,nombre: str, N_nombre: str):
-        self._nombre = nombre
-
-
-
     def set_provincia(self,id: int):
         self._id = id
     def __str__(self):
