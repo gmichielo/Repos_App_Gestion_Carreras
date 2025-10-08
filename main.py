@@ -85,7 +85,7 @@ while accion_usuario != 0 and DAO_carreras != None and DAO_carreras.get_conexion
             accion_nombre_carrera = input("\033[31mNombre no valido, Elige uno nuevo: \033[0m")
         
         nueva_carrera = creacion_carrera(accion_nombre_carrera)
-        DAO_carreras.añadir(nueva_carrera)
+        DAO_carreras.anyadir(nueva_carrera)
         carreras = DAO_carreras.ver()
 
         print(f"\n\033[32mCarrera: {carreras[-1]} creada con exito\033[0m\n")

@@ -37,7 +37,7 @@ class DAO_Carreras():
         self.conectar()
         return self.connected
 
-    def añadir(self, carrera):
+    def anyadir(self, carrera):
         sql = "INSERT INTO carreras_edgar_y_gabriel.carreras (nombre) VALUES (%s)"
         val = [carrera.get_nombre()]
         self.__mycursor.execute(sql, val)
